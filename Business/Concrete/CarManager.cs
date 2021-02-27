@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -17,52 +20,47 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
-        {
-            if (car.Description.Length>2 && car.DailyPrice>0)
-            {
-                Console.WriteLine("Car added to list...");
-            }
-            else
-            {
-                Console.WriteLine("The car that you entered is invalid. " +
-                    "Car name must longer than 2 letter and daily price must be more than 0. Please try again...");
-            }
+        public IResult Add(Car car)
+        {            
+                _carDal.Add(car);
+                return new SuccessResult();           
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
-        public Car GetById(int id)
+        public IDataResult<Car> GetById(int id)
         {
-            return _carDal.Get(p => p.Id == id);
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == id));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
-        public Car GetCarsByBrandId(int brandId)
+        public IDataResult<Car> GetCarsByBrandId(int brandId)
         {
-            return _carDal.Get(p => p.BrandId == brandId);
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.BrandId == brandId));
         }
 
-        public Car GetCarsByColorId(int colorId)
+        public IDataResult<Car> GetCarsByColorId(int colorId)
         {
-            return _carDal.Get(p => p.ColorId == colorId);
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.ColorId == colorId));
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 }
