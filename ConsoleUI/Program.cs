@@ -3,6 +3,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -11,11 +12,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            TestCars();
-            Console.WriteLine("-------------------------------");
-            ColorTest();
-            Console.WriteLine("-------------------------------");
-            TestBrands();
+            //TestCars();
+            //Console.WriteLine("-------------------------------");
+            //ColorTest();
+            //Console.WriteLine("-------------------------------");
+            //TestBrands();
+            //TestRentAdd();
 
         }
 
@@ -63,6 +65,14 @@ namespace ConsoleUI
                 }
 
             }
+        }
+
+        private static void TestRentAdd()
+        {
+            Rent rent = new Rent() {CarId=4,CustomerId=1,RentDate=DateTime.Now};
+            RentManager rentManager = new RentManager(new EfRentDal());
+            var result = rentManager.Add(rent);
+            Console.WriteLine(result.Message);
         }
     }
 }

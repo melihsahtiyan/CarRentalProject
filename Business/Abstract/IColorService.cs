@@ -9,5 +9,6 @@ namespace Business.Abstract
     public interface IColorService
     {
         IDataResult<List<Color>> GetAllColors();
+        IResult Add(Color color);
     }
 }
