@@ -45,9 +45,9 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getbybrandid")]
-        public IActionResult GetByBrandId(int brandId)
+        public IActionResult GetByBrandId(int id)
         {
-            var result = _carService.GetCarsByBrandId(brandId);
+            var result = _carService.GetCarsByBrandId(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -57,9 +57,9 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getbycolorid")]
-        public IActionResult GetByColorId(int colorId)
+        public IActionResult GetByColorId(int id)
         {
-            var result = _carService.GetCarsByColorId(colorId);
+            var result = _carService.GetCarsByColorId(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -79,7 +79,19 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        
+
+        [HttpGet("getchosencardetails")]
+        public IActionResult GetCarChosenDetails(int id)
+        {
+            var result = _carService.GetChosenCarDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+
 
 
         [HttpPost("add")]
