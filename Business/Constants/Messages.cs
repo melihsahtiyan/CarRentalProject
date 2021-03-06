@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,5 +36,7 @@ namespace Business.Constants
         public static string UserDeleted = "Kullanıcı silindi";
 
         public static string UserUpdated = "Kullanıcı güncellendi";
+
+        public static string SystemInMaintenance = "Sistem bakımda";
     }
 }
