@@ -38,5 +38,11 @@ namespace Business.Constants
         public static string UserUpdated = "Kullanıcı güncellendi";
 
         public static string SystemInMaintenance = "Sistem bakımda";
+
+        public static string DailyPriceNotExists = "Günlük fiyat alanı boş bırakılamaz";
+
+        public static string InvalidPrice = "Günlük fiyat 0 olamaz";
+
+        public static string RentDetailsListed = "Kiralama detayları listelendi";
     }
 }

@@ -7,6 +7,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 
@@ -20,8 +21,13 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+
+
+        
         public IResult Add(Car car)
         {            
+            //business code => erişim kuralları
+            //validation => nesnenin yapısal kuralları
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);           
         }
