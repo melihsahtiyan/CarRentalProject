@@ -44,5 +44,7 @@ namespace Business.Constants
         public static string InvalidPrice = "Günlük fiyat 0 olamaz";
 
         public static string RentDetailsListed = "Kiralama detayları listelendi";
+
+        public static string BrandRequired = "Araba eklemek için marka gereklidir";
     }
 }

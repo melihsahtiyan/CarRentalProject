@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -23,13 +27,14 @@ namespace Business.Concrete
 
 
 
-        
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
-        {            
+        {
             //business code => erişim kuralları
             //validation => nesnenin yapısal kuralları
-                _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);           
+
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
@@ -41,7 +46,7 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAll()
         {
 
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
         public IDataResult<Car> GetById(int id)
@@ -67,7 +72,7 @@ namespace Business.Concrete
         public IDataResult<CarDetailDto> GetChosenCarDetail(int id)
         {
             return new SuccessDataResult<CarDetailDto>(_carDal.GetChosenCarDetails(id));
-            
+
         }
 
         public IResult Update(Car car)

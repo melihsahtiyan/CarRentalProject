@@ -13,6 +13,7 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(c => c.DailyPrice).GreaterThan(0).WithMessage(Messages.InvalidPrice);
             RuleFor(c => c.DailyPrice).NotEmpty().WithMessage(Messages.DailyPriceNotExists);
+            RuleFor(c => c.BrandId).NotEmpty().WithMessage(Messages.BrandRequired);
         }
     }
 }
