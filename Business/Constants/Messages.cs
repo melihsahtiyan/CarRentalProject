@@ -46,5 +46,13 @@ namespace Business.Constants
         public static string RentDetailsListed = "Kiralama detayları listelendi";
 
         public static string BrandRequired = "Araba eklemek için marka gereklidir";
+        
+        public static string ImageAdded = "Resim eklendi";
+
+        public static string ImageDeleted = "Resim silindi";
+        
+        public static string ImageUpdated = "Resim güncellendi";
+
+        public static string ImageAdditionFailed = "Resim ekleme başarısız oldu";
     }
 }
