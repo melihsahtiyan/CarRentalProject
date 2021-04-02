@@ -54,5 +54,7 @@ namespace Business.Constants
         public static string ImageUpdated = "Resim güncellendi";
 
         public static string ImageAdditionFailed = "Resim ekleme başarısız oldu";
+
+        public static string CarDoesntExists = "Bu id'ye ait bir araba bulunmamaktadır";
     }
 }
