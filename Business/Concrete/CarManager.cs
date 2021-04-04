@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -26,7 +27,7 @@ namespace Business.Concrete
         }
 
 
-
+        [SecuredOperation("admin,customer")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -37,6 +38,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
+        [SecuredOperation("admin,customer")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -75,6 +77,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("admin,customer")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);

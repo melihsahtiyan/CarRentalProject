@@ -76,7 +76,7 @@ namespace Business.Concrete
             }
 
             var result = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../wwwroot")) +
-                         _imageDal.Get(i => i.ImageId == image.ImageId).ImagePath;
+                         _imageDal.Get(i => i.Id == image.Id).ImagePath;
             image.ImagePath = FormFileHelper.Update(file, result);
             image.Date=DateTime.Now;
             _imageDal.Update(image);

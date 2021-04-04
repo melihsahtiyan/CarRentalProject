@@ -18,8 +18,8 @@ namespace DataAccess.Concrete.EntityFramework
             using (CarRentalDataBaseContext context = new CarRentalDataBaseContext())
             {
                 var result = from c in context.Cars
-                             join clr in context.Colors on c.ColorId equals clr.ColorId
-                             join b in context.Brands on c.BrandId equals b.BrandId
+                             join clr in context.Colors on c.ColorId equals clr.Id
+                             join b in context.Brands on c.Id equals b.Id
                              join i in context.Images on c.Id equals i.CarId 
                              select new CarDetailDto
                              {
@@ -40,8 +40,8 @@ namespace DataAccess.Concrete.EntityFramework
             using (CarRentalDataBaseContext context = new CarRentalDataBaseContext())
             {
                 var result = from c in context.Cars
-                             join clr in context.Colors on c.ColorId equals clr.ColorId
-                             join b in context.Brands on c.BrandId equals b.BrandId
+                             join clr in context.Colors on c.ColorId equals clr.Id
+                             join b in context.Brands on c.BrandId equals b.Id
                              where c.Id == id
                              select new CarDetailDto
                              {
