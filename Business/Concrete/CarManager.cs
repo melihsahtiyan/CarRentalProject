@@ -1,20 +1,16 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
-using FluentValidation;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using Business.BusinessAspects.Autofac;
+using System.Threading;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
@@ -27,8 +23,9 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("admin,customer")]
+        [SecuredOperation("admin,customer,car.add")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             //business code => erişim kuralları
@@ -39,18 +36,20 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin,customer")]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
-
+ 
+        [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == id));
@@ -74,10 +73,11 @@ namespace Business.Concrete
         public IDataResult<CarDetailDto> GetChosenCarDetail(int id)
         {
             return new SuccessDataResult<CarDetailDto>(_carDal.GetChosenCarDetails(id));
-
         }
 
-        [SecuredOperation("admin,customer")]
+        [SecuredOperation("admin,customer,car.add")]
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);

@@ -51,5 +51,19 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpPost("update")]
+        public ActionResult Update(UserForUpdateDto userForUpdateDto)
+        {
+            var userExists = _authService.UserExists(userForUpdateDto.Email);
+            if (userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
+
+            var result = _authService.Update(userForUpdateDto, userForUpdateDto.Password);
+
+            return BadRequest(result.Message);
+        }
     }
 }

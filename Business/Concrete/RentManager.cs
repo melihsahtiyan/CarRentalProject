@@ -13,9 +13,11 @@ namespace Business.Concrete
     public class RentManager : IRentService
     {
         IRentDal _rentDal;
-        public RentManager(IRentDal rentDal)
+        private ICarDal _carDal;
+        public RentManager(IRentDal rentDal, ICarDal carDal)
         {
             _rentDal = rentDal;
+            _carDal = carDal;
         }
 
         public IResult Add(Rent rent)
