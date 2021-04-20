@@ -10,4 +10,4 @@ Rent A Car Project is a car hiring system developed with SOLID principles and bu
 + SQL SERVER
 
 ### You can reach me at Linkedin with link given below
-[![Linkedin](https://media-exp1.licdn.com/dms/image/C4D0BAQGyOWvr4W0Pow/company-logo_100_100/0/1590003577120?e=1626912000&v=beta&t=9hDVY9zI9XaU8kjqM39_zqyWijJ76iiLkbKF_WGqYw0)](https://www.linkedin.com/in/melihsahtiyan)
+[![Linkedin badge]( 	https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/melihsahtiyan/)
